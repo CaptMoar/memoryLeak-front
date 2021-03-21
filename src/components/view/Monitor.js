@@ -29,6 +29,13 @@ export const Monitor = () => {
         }
     }, [dataMetricas])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            dispatch(getMetricas())
+        }, 10000);
+        return () => clearInterval(interval);
+    }, [dispatch]);
+
     const state = {
         labels: dataResult.labels,
         datasets: [
